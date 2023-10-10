@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteSingleAuthor } from '../api/authorData';
+import { useRouter } from 'next/router';
+import { deleteAuthorBooks } from '../api/mergedData';
 
-function AuthorCard({ authorObj, onUpdate }) {
-  // FOR DELETE, WE NEED TO REMOVE THE BOOK AND HAVE THE VIEW RERENDER,
-  // SO WE PASS THE FUNCTION FROM THE PARENT THAT GETS THE BOOKS
+function AuthorCard({ authorObj }) {
+  const router = useRouter();
+
   const deleteThisAuthor = () => {
-    if (window.confirm(`Delete ${authorObj.firebaseKey}?`)) {
-      deleteSingleAuthor(authorObj.firebaseKey).then(() => onUpdate());
+    if (window.confirm(`Delete ${authorObj.first_name} ${authorObj.last_name}?`)) {
+      deleteAuthorBooks(authorObj.firebaseKey).then(() => router.push('/'));
     }
   };
 
@@ -42,7 +43,6 @@ AuthorCard.propTypes = {
     email: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default AuthorCard;

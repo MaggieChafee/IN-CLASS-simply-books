@@ -44,7 +44,7 @@ function AuthorForm({ obj }) {
         const patchPayload = { firebaseKey: name };
 
         updateAuthor(patchPayload).then(() => {
-          router.push('/');
+          router.push('/author');
         });
       });
     }

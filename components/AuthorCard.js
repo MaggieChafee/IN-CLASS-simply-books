@@ -17,15 +17,14 @@ function AuthorCard({ authorObj }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
+      <Card.Img variant="top" src={authorObj.image} alt={authorObj.last_name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{authorObj.first_name} {authorObj.last_name}</Card.Title>
         <p className="card-text bold">{authorObj.favorite && <span>HEART<br /></span>}</p>
         <p className="card-text bold">{authorObj.email}</p>
-        {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         <Link href={`/authors/${authorObj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">VIEW</Button>
         </Link>
-        {/* DYNAMIC LINK TO EDIT THE BOOK DETAILS  */}
         <Link href={`/authors/edit/${authorObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
@@ -42,6 +41,7 @@ AuthorCard.propTypes = {
     favorite: PropTypes.bool,
     email: PropTypes.string,
     firebaseKey: PropTypes.string,
+    image: PropTypes.string,
   }).isRequired,
 };
 

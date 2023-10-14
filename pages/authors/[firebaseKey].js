@@ -14,7 +14,6 @@ export default function ViewAuthorSpecifics() {
   const getAuthDeats = () => {
     getAuthorDetails(firebaseKey).then(setAuthorDetails);
   };
-  console.warn(getAuthDeats);
 
   useEffect(() => {
     getAuthDeats();

@@ -27,6 +27,12 @@ export default function NavBar() {
             <Link passHref href="/book/new">
               <Nav.Link>Create Book</Nav.Link>
             </Link>
+            <Link passHref href="/orders/new">
+              <Nav.Link>Create Order</Nav.Link>
+            </Link>
+            <Link passHref href="/orders">
+              <Nav.Link>View Orders</Nav.Link>
+            </Link>
             <Link passHref href="/profile">
               <Nav.Link>User Profile</Nav.Link>
             </Link>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -16,6 +16,10 @@ export default function OrderForm({ orderObj }) {
   const [formInput, setFormInput] = useState({ ...initialState, uid: user.uid });
   const router = useRouter();
 
+  useEffect(() => {
+    if (orderObj.firebaseKey) setFormInput(orderObj);
+  }, [orderObj]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -29,12 +33,12 @@ export default function OrderForm({ orderObj }) {
     e.preventDefault();
 
     if (orderObj.firebaseKey) {
-      updateOrder(formInput).then(() => router.push(`/order/${orderObj.firebaseKey}`));
+      updateOrder(formInput).then(() => router.push(`/orders/${orderObj.firebaseKey}`));
     } else {
       const payload = { ...formInput, dateCreated: new Date() };
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateOrder(patchPayload).then(() => router.push('/orders'));
+        updateOrder(patchPayload).then(() => router.push('/order'));
       });
     }
   };

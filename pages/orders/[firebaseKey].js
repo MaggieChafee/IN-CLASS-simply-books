@@ -29,7 +29,7 @@ export default function ViewOrder() {
     createOrderBook(payload).then(({ name }) => {
       const patchPayload = { firebaseKey: name };
 
-      updateOrderBook(patchPayload).then(() => router.push(`/order/${firebaseKey}`));
+      updateOrderBook(patchPayload).then(() => router.push(`/orders/${firebaseKey}`));
     });
   };
 
@@ -45,20 +45,9 @@ export default function ViewOrder() {
         <div className="d-flex flex-column">
           <div className="text-white ms-5 details">
             <h2>{orderDetails.customer_name} {orderDetails.orderType}</h2>
-            Order Email: <a href="mailto:aja@aja.com">${orderDetails.email}</a>
+            Order Email: ${orderDetails.email}
           </div>
           <h4>Order Total ${total?.toFixed(2)}</h4>
-          <h3> Add Books to Order</h3>
-          { booksNotInOrder.map((book) => (
-            <Card>
-              <img className="card-img-top" src={book.image} alt={book.title} style={{ height: '80px', width: '80px' }} />
-              <div className="card-body">
-                <h5 className="card-title">${book.title}</h5>
-                <p className="card-text bold">{ book.sale ? `🏷️ Sale $${book.price}` : `$${book.price}` }</p>
-              </div>
-              <Button onClick={() => addBookToOrder(book.firebaseKey)}> Add Book To Bag</Button>
-            </Card>
-          ))}
           <h2>Books In Order</h2>
           { orderDetails.orderBooks?.map((book) => (
             <Card style={{ width: '18rem', margin: '10px' }}>
@@ -74,6 +63,17 @@ export default function ViewOrder() {
                   DELETE
                 </Button>
               </Card.Body>
+            </Card>
+          ))}
+          <h3> Add Books to Order</h3>
+          { booksNotInOrder.map((book) => (
+            <Card>
+              <img className="card-img-top" src={book.image} alt={book.title} style={{ height: '80px', width: '80px' }} />
+              <div className="card-body">
+                <h5 className="card-title">${book.title}</h5>
+                <p className="card-text bold">{ book.sale ? `🏷️ Sale $${book.price}` : `$${book.price}` }</p>
+              </div>
+              <Button onClick={() => addBookToOrder(book.firebaseKey)}> Add Book To Bag</Button>
             </Card>
           ))}
         </div>

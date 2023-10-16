@@ -58,7 +58,7 @@ function AuthorForm({ obj }) {
           <Form.Control type="text" placeholder="Author's First Name" name="first_name" value={formInput.first_name} onChange={handleChange} required />
 
           <Form.Label>Author Last Name</Form.Label>
-          <Form.Control type="text" placeholder="Author's First Name" name="last_name" value={formInput.last_name} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Author's Last Name" name="last_name" value={formInput.last_name} onChange={handleChange} required />
 
           <Form.Label>Author Email</Form.Label>
           <Form.Control type="email" placeholder="Author's Email" name="email" value={formInput.email} onChange={handleChange} />

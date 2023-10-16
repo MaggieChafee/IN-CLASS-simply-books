@@ -11,7 +11,7 @@ const initialState = {
   email: '',
 };
 
-export default function OrderForm({ orderObj }) {
+function OrderForm({ orderObj }) {
   const { user } = useAuth();
   const [formInput, setFormInput] = useState({ ...initialState, uid: user.uid });
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function OrderForm({ orderObj }) {
           <Form.Control type="text" placeholder="Customer's Name" name="customer_name" value={formInput.customer_name} onChange={handleChange} required />
 
           <Form.Label>Customer Email</Form.Label>
-          <Form.Control type="email" placeholder="Author's Email" name="email" value={formInput.email} onChange={handleChange} />
+          <Form.Control type="email" placeholder="Customer's Email" name="email" value={formInput.email} onChange={handleChange} />
 
           <Form.Label>Order Type</Form.Label>
           <Form.Control type="text" placeholder="In Person or Online?" name="orderType" value={formInput.orderType} onChange={handleChange} />
@@ -74,3 +74,5 @@ OrderForm.propTypes = {
 OrderForm.defaultProps = {
   orderObj: initialState,
 };
+
+export default OrderForm;

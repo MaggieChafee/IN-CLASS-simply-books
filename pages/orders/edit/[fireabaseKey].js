@@ -10,6 +10,7 @@ export default function EditOrder() {
   const { firebaseKey } = router.query;
 
   useEffect(() => {
+    console.warn(firebaseKey);
     getSingleOrder(firebaseKey).then(setEditOrderInfo);
   }, [firebaseKey]);
 
